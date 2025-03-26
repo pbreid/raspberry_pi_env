@@ -23,4 +23,4 @@ services:
     stdin_open: true
 
 volumes:
-  data_volume:  # Define the volume
+  data_volume:
