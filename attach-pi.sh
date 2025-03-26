@@ -1,1 +1,1 @@
-docker compose exec rpi-emulator bash
+docker compose exec -u pi rpi-emulator bash
