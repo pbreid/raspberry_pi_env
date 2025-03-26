@@ -1,0 +1,63 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Set up terminal color
+export TERM=xterm-256color
+
+# Set history control
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s histappend
+
+# Check window size after each command
+shopt -s checkwinsize
+
+# Make less more friendly for non-text input files
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# Root themed prompt - red user@host, blue directory
+PS1='\[\033[38;5;196m\]\u@\h\[\033[00m\]:\[\033[38;5;75m\]\w\[\033[00m\]# '
+
+# Enable color support for ls and add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Add user's private bin to PATH if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Display welcome message
+echo -e "\033[38;5;196m"
+echo "Welcome to Raspberry Pi OS (Emulated)"
+echo "Running in Docker container as ROOT"
+echo -e "\033[00m"
+echo -e "Container started at: \033[38;5;214m$(date)\033[00m"
+echo -e "\033[38;5;226mReminder: The only persistent storage location is /data.\033[00m"
+echo ""

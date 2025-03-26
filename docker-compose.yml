@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  rpi-emulator:
+    image: rpi-os-emulated
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/arm64
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp=unconfined
+    ports:
+      - "5000:5000"
+      - "22:22"
+    volumes:
+    # Mount the data directory for building on the pi
+    - data_volume:/data  # Map the volume to a path in the container
+
+    tty: true
+    stdin_open: true
+
+volumes:
+  data_volume:  # Define the volume
