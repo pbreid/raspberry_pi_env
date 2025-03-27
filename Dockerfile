@@ -40,6 +40,10 @@ COPY ../env/pi-bashrc /home/pi/.bashrc
 COPY ../env/vimrc /root/.vimrc 
 COPY ../env/vimrc /home/pi/.vimrc
 
+# Set Default Timezone to Brisbane/Australia
+RUN ln -sf /usr/share/zoneinfo/Australia/Brisbane /etc/localtime
+
+
 # Expose Web UI and SSH port
 EXPOSE 5000 22
 
