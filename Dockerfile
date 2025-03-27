@@ -41,19 +41,18 @@ RUN useradd -m -s /bin/bash pi
 
 # Set the root password
 RUN echo "root:raspberry" | chpasswd
-
 # Set the pi password
 RUN echo "pi:raspberry" | chpasswd
 
 # Create root's bashrc file
-COPY ../root-bashrc /root/.bashrc
+COPY ../env/root-bashrc /root/.bashrc
 
 # Create pi's bashrc file
-COPY ../pi-bashrc /home/pi/.bashrc
+COPY ../env/pi-bashrc /home/pi/.bashrc
 
 # # Configure Vim with basic colorscheme
-COPY ../vimrc /root/.vimrc
-COPY ../vimrc /home/pi/.vimrc
+COPY ../env/vimrc /root/.vimrc
+COPY ../env/vimrc /home/pi/.vimrc
 
 RUN mkdir -p /home/pi/.vim /root/.vim
 
