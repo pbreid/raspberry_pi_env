@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 python3-dev python3-venv python3-full python3.11-dev python3-pip \
     openssh-server \
     libgl1-mesa-glx libcap-dev libffi-dev libssl-dev \
-    libatlas-base-dev libhdf5-dev \
+    libatlas-base-dev libhdf5-dev libc-bin \
     v4l-utils gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
     libcamera-dev libcamera-apps libcamera-tools \
     python3-picamera2 python3-libcamera \
