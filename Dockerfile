@@ -57,16 +57,17 @@ COPY ../env/vimrc /home/pi/.vimrc
 RUN mkdir -p /home/pi/.vim /root/.vim
 
 RUN touch /home/pi/.Xauthority && chown 1000:1000 /home/pi/.Xauthority && chmod 600 /home/pi/.Xauthority
+RUN touch /root/.Xauthority && chown 0:0 /root/.Xauthority && chmod 600 /root/.Xauthority
 
 # Set ownership of pi's home directory to pi
 RUN chown -R 1000:1000 /home/pi
-
 RUN mkdir /run/sshd && chmod 755 /run/sshd
 
 # Configure SSH to allow password authentication and PermitRootLogin yes
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
+RUN mkdir -p /data && chown 1000:1000 /data
 
 # Add the pi user to the sudo group
 RUN usermod -aG sudo pi
@@ -75,4 +76,4 @@ RUN usermod -aG sudo pi
 EXPOSE 5000 22
 
 # Update CMD to start SSH and keep the container running
-CMD service ssh start && tail -f /dev/null
+CMD chown -R 1000:1000 /data && service ssh start && tail -f /dev/null
