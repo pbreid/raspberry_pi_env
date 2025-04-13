@@ -35,10 +35,10 @@ RUN touch /home/pi/.Xauthority && chown 1000:1000 /home/pi/.Xauthority && chmod 
     touch /root/.Xauthority && chown 0:0 /root/.Xauthority && chmod 600 /root/.Xauthority
 
 # Copy configuration files in a single layer
-COPY ../env/root-bashrc /root/.bashrc
-COPY ../env/pi-bashrc /home/pi/.bashrc
-COPY ../env/vimrc /root/.vimrc 
-COPY ../env/vimrc /home/pi/.vimrc
+COPY ./env/root-bashrc /root/.bashrc
+COPY ./env/pi-bashrc /home/pi/.bashrc
+COPY ./env/vimrc /root/.vimrc 
+COPY ./env/vimrc /home/pi/.vimrc
 
 # Set Default Timezone to Brisbane/Australia
 RUN ln -sf /usr/share/zoneinfo/Australia/Brisbane /etc/localtime
