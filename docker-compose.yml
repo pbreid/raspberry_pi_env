@@ -19,6 +19,7 @@ services:
     # Mount the data directory for building on the pi
     - data_volume:/data  # Map the volume to a path in the container
     - apt-cache:/var/cache/apt  # Fast cache directory on host
+    - ~:/local
     deploy:
       resources:
         limits:

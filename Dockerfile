@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev libopenjp2-7-dev \
     libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
     cmake build-essential pkg-config \
-    jq curl uuid-runtime libcap-dev lm-sensors git nano sudo iputils-ping && \
+    jq curl uuid-runtime libcap-dev lm-sensors git nano sudo iputils-ping lsb-release && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
