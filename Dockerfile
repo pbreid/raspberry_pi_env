@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     v4l-utils gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
     libcamera-dev libcamera-apps libcamera-tools \
     python3-picamera2 python3-libcamera \
-    dnsmasq hostapd shc \
+    dnsmasq hostapd shc file \
     libjpeg-dev libopenjp2-7-dev \
     libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
     cmake build-essential pkg-config \
