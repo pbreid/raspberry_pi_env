@@ -9,9 +9,9 @@ RUN useradd -m -s /bin/bash pi && \
     chmod 755 /run/sshd && \
     chown -R 1000:1000 /home/pi /data
 
-# Install all dependencies in a single RUN to reduce layers
+# Install Python 3.11 and set as default
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 python3-dev python3-venv python3-full python3.11-dev python3-pip \
+    python3.11 python3.11-venv python3.11-dev python3-pip \
     openssh-server \
     libgl1-mesa-glx libcap-dev libffi-dev libssl-dev \
     libatlas-base-dev libhdf5-dev libc-bin \
@@ -24,7 +24,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cmake build-essential pkg-config \
     jq curl uuid-runtime libcap-dev lm-sensors git nano sudo iputils-ping lsb-release && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 && \
+    python3 --version
+
+# Remove any other python3.x alternatives if present
+RUN update-alternatives --set python3 /usr/bin/python3.11
+
+# Print Python version for verification
+RUN python3 --version 
 
 # Configure SSH in a separate layer (small text files)
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
